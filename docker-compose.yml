@@ -6,8 +6,8 @@ services:
     ports:
       - 54322:5432
     environment:
-      - POSTGRES_USER=pradya
-      - POSTGRES_PASSWORD=5546
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
     image: postgres:latest
     restart: unless-stopped
 
@@ -16,8 +16,8 @@ services:
     ports:
       - 8080:8080
     environment:
-      - PGADMIN_DEFAULT_EMAIL=pradya-s@rmutp.ac.th
-      - PGADMIN_DEFAULT_PASSWORD=5546
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
     image: dpage/pgadmin4:latest
 
   myapp:
@@ -25,11 +25,11 @@ services:
     ports:
       - 1337:1337
     environment:
-      - DATABASE_CLIENT=postgres
-      - DATABASE_HOST=192.168.56.1
-      - DATABASE_PORT=54322
-      - DATABASE_NAME=pradya
-      - DATABASE_USERNAME=pradya
-      - DATABASE_PASSWORD=5546
-      - DATABASE_SSL=false
+      - DATABASE_CLIENT=${D_CLIENT}
+      - DATABASE_HOST=${D_HOST}
+      - DATABASE_PORT=${D_PORT}
+      - DATABASE_NAME=${D_NAME}
+      - DATABASE_USERNAME=${D_USERNAME}
+      - DATABASE_PASSWORD=${D_PASSWORD}
+      - DATABASE_SSL=%{D_SSL}
     image: naskio/strapi:latest
